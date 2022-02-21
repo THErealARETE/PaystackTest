@@ -1,0 +1,460 @@
+{
+	"info": {
+		"_postman_id": "dd194110-8504-4915-9cad-0882193a285c",
+		"name": "Paystack Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Request for planet 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseData = pm.response.json()",
+							"",
+							"var schema = {",
+							"    \"type\": \"object\",",
+							"    \"default\": {},",
+							"    \"required\": [",
+							"        \"name\",",
+							"        \"rotation_period\",",
+							"        \"orbital_period\",",
+							"        \"diameter\",",
+							"        \"climate\",",
+							"        \"gravity\",",
+							"        \"terrain\",",
+							"        \"surface_water\",",
+							"        \"population\",",
+							"        \"residents\",",
+							"        \"films\",",
+							"        \"created\",",
+							"        \"edited\",",
+							"        \"url\"",
+							"    ],",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"        \"name\": {",
+							"            \"examples\": [",
+							"                \"Yavin IV\"",
+							"            ],",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"rotation_period\": {",
+							"            \"examples\": [",
+							"                \"24\"",
+							"            ],",
+							"            \"title\": \"The rotation_period schema\",",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"orbital_period\": {",
+							"            \"examples\": [",
+							"                \"4818\"",
+							"            ],",
+							"            \"title\": \"The orbital_period schema\",",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"diameter\": {",
+							"            \"examples\": [",
+							"                \"10200\"",
+							"            ],",
+							"            \"title\": \"The diameter schema\",",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"climate\": {",
+							"            \"examples\": [",
+							"                \"temperate, tropical\"",
+							"            ],",
+							"            \"title\": \"The climate schema\",",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"gravity\": {",
+							"            \"examples\": [",
+							"                \"1 standard\"",
+							"            ],",
+							"            \"title\": \"The gravity schema\",",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"terrain\": {",
+							"            \"examples\": [",
+							"                \"jungle, rainforests\"",
+							"            ],",
+							"            \"title\": \"The terrain schema\",",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"surface_water\": {",
+							"            \"examples\": [",
+							"                \"8\"",
+							"            ],",
+							"            \"title\": \"The surface_water schema\",",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"population\": {",
+							"            \"examples\": [",
+							"                \"1000\"",
+							"            ],",
+							"            \"title\": \"The population schema\",",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"residents\": {",
+							"            \"examples\": [",
+							"                []",
+							"            ],",
+							"            \"type\": \"array\",",
+							"            \"additionalItems\": true,",
+							"        },",
+							"        ",
+							"        \"created\": {",
+							"            \"examples\": [",
+							"                \"2014-12-10T11:37:19.144000Z\"",
+							"            ],",
+							"            \"title\": \"The created schema\",",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"edited\": {",
+							"            \"examples\": [",
+							"                \"2014-12-20T20:58:18.421000Z\"",
+							"            ],",
+							"            \"title\": \"The edited schema\",",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"url\": {",
+							"            \"examples\": [",
+							"                \"https://swapi.dev/api/planets/3/\"",
+							"            ],",
+							"            \"title\": \"The url schema\",",
+							"            \"type\": \"string\"",
+							"        }",
+							"    },",
+							"    \"additionalProperties\": true",
+							"}",
+							"",
+							"pm.test(\"Test that content-type is present in Header\", ()=>{",
+							"    pm.response.to.have.header(\"Content-Type\")",
+							"})",
+							"",
+							"pm.test(\"Test that the content-type is application/json\",()=>{",
+							"    pm.expect(postman.getResponseHeader(\"Content-Type\")).to.include(\"application/json\")",
+							"})",
+							"",
+							"pm.test(\"Test that the response body keys such as name, rotation, gravity and url carry the appropriate values and data types for planets/3\", ()=>{",
+							"    pm.expect(responseData.name).to.eql(\"Yavin IV\")",
+							"    pm.expect(responseData.rotation_period).to.eql(\"24\")",
+							"    pm.expect(responseData.gravity).to.eql(\"1 standard\")",
+							"    pm.expect(responseData.url).to.eql(\"https://swapi.dev/api/planets/3/\")",
+							"})",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Test that the Response time is less than 700ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(700);",
+							"});",
+							"",
+							"pm.test(\"Test that the json schema meets requirements \", ()=>{",
+							"    pm.response.to.be.jsonSchema(schema)",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{realUrl}}/planets/3/",
+					"host": [
+						"{{realUrl}}"
+					],
+					"path": [
+						"planets",
+						"3",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://swapi.dev/api/planets/3/",
+							"protocol": "https",
+							"host": [
+								"swapi",
+								"dev"
+							],
+							"path": [
+								"api",
+								"planets",
+								"3",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.16.1"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 17 Feb 2022 15:23:45 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "ETag",
+							"value": "\"ccbca9ad5dbcc6c73413df0765660c26\""
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15768000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"Yavin IV\",\n    \"rotation_period\": \"24\",\n    \"orbital_period\": \"4818\",\n    \"diameter\": \"10200\",\n    \"climate\": \"temperate, tropical\",\n    \"gravity\": \"1 standard\",\n    \"terrain\": \"jungle, rainforests\",\n    \"surface_water\": \"8\",\n    \"population\": \"1000\",\n    \"residents\": [],\n    \"films\": [\n        \"https://swapi.dev/api/films/1/\"\n    ],\n    \"created\": \"2014-12-10T11:37:19.144000Z\",\n    \"edited\": \"2014-12-20T20:58:18.421000Z\",\n    \"url\": \"https://swapi.dev/api/planets/3/\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Request for planet 3 MOCKED",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{mockedUrl}}/api/planets/3",
+					"host": [
+						"{{mockedUrl}}"
+					],
+					"path": [
+						"api",
+						"planets",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://swapi.dev/api/planets/3/",
+							"protocol": "https",
+							"host": [
+								"swapi",
+								"dev"
+							],
+							"path": [
+								"api",
+								"planets",
+								"3",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.16.1"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 17 Feb 2022 15:23:45 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "ETag",
+							"value": "\"ccbca9ad5dbcc6c73413df0765660c26\""
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15768000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"AnotherValueForNameObject\",\n    \"rotation_period\": \"24\",\n    \"orbital_period\": \"4818\",\n    \"diameter\": \"10200\",\n    \"climate\": \"temperate, tropical\",\n    \"gravity\": \"1 standard\",\n    \"terrain\": \"jungle, rainforests\",\n    \"surface_water\": \"8\",\n    \"population\": \"1000\",\n    \"residents\": [],\n    \"films\": [\n        \"https://swapi.dev/api/films/1/\"\n    ],\n    \"created\": \"2014-12-10T11:37:19.144000Z\",\n    \"edited\": \"2014-12-20T20:58:18.421000Z\",\n    \"url\": \"https://swapi.dev/api/planets/3/\"\n}"
+				}
+			]
+		},
+		{
+			"name": "POST Request for planet 3 (Negative)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", () => {",
+							"  pm.response.to.have.status(405);",
+							"});",
+							"",
+							"pm.test(\"Test that the response message is as desired\", () => {",
+							"  pm.response.to.have.status(\"METHOD NOT ALLOWED\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Automated testing\",\n    \"Completed\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{realUrl}}/planets/3/",
+					"host": [
+						"{{realUrl}}"
+					],
+					"path": [
+						"planets",
+						"3",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "POST Request for planet 3 (Negative)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Automated testing\",\n    \"Completed\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://swapi.dev/api/planets/3/",
+							"protocol": "https",
+							"host": [
+								"swapi",
+								"dev"
+							],
+							"path": [
+								"api",
+								"planets",
+								"3",
+								""
+							]
+						}
+					},
+					"status": "METHOD NOT ALLOWED",
+					"code": 405,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.16.1"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Feb 2022 11:05:07 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "ETag",
+							"value": "\"06617ed6e3d11ac4083b49588eb38c86\""
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"detail\": \"Method 'POST' not allowed.\"\n}"
+				}
+			]
+		}
+	]
+}
