@@ -32,9 +32,11 @@ jobs:
 
 
       # Run the POSTMAN collection
+      # newman run Paystack-Test.postman_collection.json -e Paystack-Test-Environment.postman_environment.json -r htmlextra --reporter-htmlextra-export   
+
       - name: Run POSTMAN collection
         run: |
-          newman run Paystack-Test.postman_collection.json -e Paystack-Test-Environment.postman_environment.json -r htmlextra --reporter-htmlextra-export  
+          newman run Paystack-Test.postman_collection.json -e Paystack-Test-Environment.postman_environment.json  
 
 
       # Upload the contents of Test Results directory to workspace
