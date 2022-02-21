@@ -35,7 +35,7 @@ jobs:
       # newman run Paystack-Test.postman_collection.json -e Paystack-Test-Environment.postman_environment.json -r htmlextra --reporter-htmlextra-export   
 
       - name: Run POSTMAN collection
-        continue-on-error: true 
+         
         run: |
           newman run PaystackTest.postman_collection.json -e Paystack-Test-Environment.postman_environment.json -r htmlextra --reporter-htmlextra-export
  
