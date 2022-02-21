@@ -37,8 +37,8 @@ jobs:
       - name: Run POSTMAN collection
         continue-on-error: true 
         run: |
-          newman run Paystack-Test.postman_collection.json -e Paystack-Test-Environment.postman_environment.json -r htmlextra --reporter-htmlextra-export    
-           
+          newman run Paystack-Test.postman_collection.json -e Paystack-Test-Environment.postman_environment.json -r htmlextra --reporter-htmlextra-export
+ 
 
 
       # Upload the contents of Test Results directory to workspace
