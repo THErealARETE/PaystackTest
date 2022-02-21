@@ -16,7 +16,7 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: "16.x"
 
 
       # Install the newman command line utility and also install the html extra reporter
@@ -34,7 +34,7 @@ jobs:
       # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
-          newman run Paystack-Test.postman_collection.json -e Paystack-Test-Environment.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html 
+          newman run Paystack-Test.postman_collection.json -e Paystack-Test-Environment.postman_environment.json -r htmlextra --reporter-htmlextra-export  
 
 
       # Upload the contents of Test Results directory to workspace
