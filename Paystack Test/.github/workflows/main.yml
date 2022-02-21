@@ -1,0 +1,41 @@
+name: Test-Build
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+ # install Node on the runner    
+name: Install Node
+uses: actions/setup-node@v1
+with:
+  node-version: "12.x" 
+  
+# install the newman command line utility 
+name: install newman 
+run: |
+  npm install -g newman
+  npm install -g newman-reporter-htmlextra
+  
+# Make directory to upload the test results
+name: make directory for results to appear in
+run: mkdir -p testResults 
+
+
+# Run the postman collection 
+name: Run Postman collection 
+run: |
+  newman run Paystack-Test.postman_collection.json -r htmlextra --reporter-html-export testResults/htmlReporter.html --reporter-htmlextra-darktheme  > testResults/runreport1.html
+  
+  
+#upload the contents of Test Resultsdirectory to workspace 
+name: Output the run details
+uses: actions/upload-artifact@v2
+with:
+  name: RunReports
+  path: testResults
